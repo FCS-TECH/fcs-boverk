@@ -1,10 +1,10 @@
 ﻿// ***********************************************************************
 // Assembly         : FCS.Lib.BoVerk
 // Author           : 
-// Created          : 2023 08 31 15:46
+// Created          : 2023 10 01 11:03
 // 
 // Last Modified By : root
-// Last Modified On : 2023 08 31 15:46
+// Last Modified On : 2023 10 02 15:24
 // ***********************************************************************
 // <copyright file="BoVerkResponseParser.cs" company="FCS">
 //     Copyright (C) 2023-2023 FCS Frede's Computer Services.
@@ -25,97 +25,95 @@
 // ***********************************************************************
 
 using System;
-using System.Net.NetworkInformation;
-using System.Runtime.Remoting.Messaging;
 
-namespace FCS.Lib.BoVerk
+namespace FCS.Lib.BoVerk;
+
+public class BoVerkResponseParser
 {
-    public class BoVerkResponseParser
+    private const string PidUttagen = "<p id=\"uttagen\">";
+    private const string TdHOrgnr = "<td headers=\"h-orgnr\">";
+    private const string TdHFirma = "<td headers=\"h-firma\">";
+    private const string TdHStatus = "<td headers=\"h-status\">";
+
+    public string ParseCompanyName(string content)
     {
-        private const string PidUttagen = "<p id=\"uttagen\">";
-        private const string TdHOrgnr = "<td headers=\"h-orgnr\">";
-        private const string TdHFirma = "<td headers=\"h-firma\">";
-        private const string TdHStatus = "<td headers=\"h-status\">";
+        if (string.IsNullOrWhiteSpace(content) || !content.Contains(TdHFirma))
+            return string.Empty;
 
-        public string ParseCompanyName(string content)
-        {
-            if (string.IsNullOrWhiteSpace(content) || !content.Contains(TdHFirma))
-                return string.Empty;
+        var y = content.IndexOf(TdHFirma, StringComparison.OrdinalIgnoreCase);
 
-            var y = content.IndexOf(TdHFirma, StringComparison.OrdinalIgnoreCase);
-            
-            if(y == -1) return 
+        if (y == -1)
+            return
                 string.Empty;
-            
-            var data = content.Substring(y + TdHFirma.Length, 100);
-            
-            var tdEnd = data.IndexOf("</td>", StringComparison.OrdinalIgnoreCase);
-            
-            return content.Substring(y + TdHFirma.Length, tdEnd);
-        }
+
+        var data = content.Substring(y + TdHFirma.Length, 100);
+
+        var tdEnd = data.IndexOf("</td>", StringComparison.OrdinalIgnoreCase);
+
+        return content.Substring(y + TdHFirma.Length, tdEnd);
+    }
 
 
-        public string ParseTaxId(string content)
-        {
-            if (string.IsNullOrWhiteSpace(content) || !content.Contains(TdHOrgnr))
-                return string.Empty;
-            
-            content = content.Replace("\n", "");
-            
-            var y = content.IndexOf(TdHOrgnr, StringComparison.OrdinalIgnoreCase);
-            
-            if( y == -1) 
-                return string.Empty;
-            
-            var data = content.Substring(y + TdHOrgnr.Length, 500);
-            
-            var z = data.IndexOf("</a></td>", StringComparison.OrdinalIgnoreCase);
-            
-            return data.Substring(z -13, 11).Trim().Replace("-", "");
-        }
+    public string ParseTaxId(string content)
+    {
+        if (string.IsNullOrWhiteSpace(content) || !content.Contains(TdHOrgnr))
+            return string.Empty;
+
+        content = content.Replace("\n", "");
+
+        var y = content.IndexOf(TdHOrgnr, StringComparison.OrdinalIgnoreCase);
+
+        if (y == -1)
+            return string.Empty;
+
+        var data = content.Substring(y + TdHOrgnr.Length, 500);
+
+        var z = data.IndexOf("</a></td>", StringComparison.OrdinalIgnoreCase);
+
+        return data.Substring(z - 13, 11).Trim().Replace("-", "");
+    }
 
 
-        public string ParseStatus(string content)
-        {
-            if (string.IsNullOrWhiteSpace(content) || !content.Contains(TdHStatus))
-                return string.Empty;
-            
-            var y = content.IndexOf(TdHStatus, StringComparison.OrdinalIgnoreCase);
-            
-            if(y == -1) 
-                return string.Empty;
-            
-            var data = content.Substring(y + TdHStatus.Length, 100);
-            
-            var tdEnd = data.IndexOf("</td>", StringComparison.OrdinalIgnoreCase);
-            
-            return content.Substring(y + TdHStatus.Length, tdEnd);
-        }
+    public string ParseStatus(string content)
+    {
+        if (string.IsNullOrWhiteSpace(content) || !content.Contains(TdHStatus))
+            return string.Empty;
+
+        var y = content.IndexOf(TdHStatus, StringComparison.OrdinalIgnoreCase);
+
+        if (y == -1)
+            return string.Empty;
+
+        var data = content.Substring(y + TdHStatus.Length, 100);
+
+        var tdEnd = data.IndexOf("</td>", StringComparison.OrdinalIgnoreCase);
+
+        return content.Substring(y + TdHStatus.Length, tdEnd);
+    }
 
 
-        public DateTime ParseRequestDate(string content)
-        {
-            if (string.IsNullOrWhiteSpace(content) || !content.Contains(PidUttagen))
-                return DateTime.Now;
+    public DateTime ParseRequestDate(string content)
+    {
+        if (string.IsNullOrWhiteSpace(content) || !content.Contains(PidUttagen))
+            return DateTime.Now;
 
-            var y = content.IndexOf(PidUttagen, StringComparison.OrdinalIgnoreCase);
-            
-            if(y == -1) 
-                return DateTime.Now;
-            
-            var data = content.Substring(y + PidUttagen.Length, 50);
-            
-            var pEnd = data.IndexOf("</p>", StringComparison.OrdinalIgnoreCase);
+        var y = content.IndexOf(PidUttagen, StringComparison.OrdinalIgnoreCase);
 
-            return ParseDateTime(data.Substring(0, pEnd));
-        }
+        if (y == -1)
+            return DateTime.Now;
 
-        public DateTime ParseDateTime(string data)
-        {
-            var date = data.Split(' ')[1].Split('-');
-            var time = data.Split(' ')[4].Split(':');
-            return new DateTime(int.Parse(date[0]), int.Parse(date[1]), int.Parse(date[2]), int.Parse(time[0]), int.Parse(time[1]), 0);
-        }
+        var data = content.Substring(y + PidUttagen.Length, 50);
+
+        var pEnd = data.IndexOf("</p>", StringComparison.OrdinalIgnoreCase);
+
+        return ParseDateTime(data.Substring(0, pEnd));
+    }
+
+    public DateTime ParseDateTime(string data)
+    {
+        var date = data.Split(' ')[1].Split('-');
+        var time = data.Split(' ')[4].Split(':');
+        return new DateTime(int.Parse(date[0]), int.Parse(date[1]), int.Parse(date[2]), int.Parse(time[0]),
+            int.Parse(time[1]), 0);
     }
 }
-
