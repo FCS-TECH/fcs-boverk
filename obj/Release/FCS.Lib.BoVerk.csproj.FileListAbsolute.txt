@@ -7,13 +7,3 @@ Z:\FCS\fcs-boverk\obj\Release\FCS.Lib.BoVerk.csproj.CoreCompileInputs.cache
 Z:\FCS\fcs-boverk\obj\Release\FCS.Lib.BoVerk.csproj.CopyComplete
 Z:\FCS\fcs-boverk\obj\Release\FCS.Lib.BoVerk.dll
 Z:\FCS\fcs-boverk\obj\Release\FCS.Lib.BoVerk.pdb
-Z:\FCS\fcs-boverk\bin\Release\System.Text.Json.dll
-Z:\FCS\fcs-boverk\bin\Release\System.Memory.dll
-Z:\FCS\fcs-boverk\bin\Release\System.ValueTuple.dll
-Z:\FCS\fcs-boverk\bin\Release\System.Text.Encodings.Web.dll
-Z:\FCS\fcs-boverk\bin\Release\System.Numerics.Vectors.dll
-Z:\FCS\fcs-boverk\bin\Release\System.Threading.Tasks.Extensions.dll
-Z:\FCS\fcs-boverk\bin\Release\Microsoft.Bcl.AsyncInterfaces.dll
-Z:\FCS\fcs-boverk\bin\Release\System.Buffers.dll
-Z:\FCS\fcs-boverk\bin\Release\System.Runtime.CompilerServices.Unsafe.dll
-Z:\FCS\fcs-boverk\bin\Release\System.Runtime.CompilerServices.Unsafe.xml
