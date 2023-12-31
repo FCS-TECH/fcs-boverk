@@ -1,9 +1,0 @@
-Z:\FCS\fcs-boverk\bin\Release\FCS.Lib.BoVerk.dll
-Z:\FCS\fcs-boverk\bin\Release\FCS.Lib.BoVerk.pdb
-Z:\FCS\fcs-boverk\bin\Release\FCS.Lib.Common.dll
-Z:\FCS\fcs-boverk\bin\Release\FCS.Lib.Common.pdb
-Z:\FCS\fcs-boverk\obj\Release\FCS.Lib.BoVerk.csproj.AssemblyReference.cache
-Z:\FCS\fcs-boverk\obj\Release\FCS.Lib.BoVerk.csproj.CoreCompileInputs.cache
-Z:\FCS\fcs-boverk\obj\Release\FCS.Lib.BoVerk.csproj.CopyComplete
-Z:\FCS\fcs-boverk\obj\Release\FCS.Lib.BoVerk.dll
-Z:\FCS\fcs-boverk\obj\Release\FCS.Lib.BoVerk.pdb
