@@ -7,7 +7,7 @@
 // Last Modified On : 2023-10-13 07:33
 // ***********************************************************************
 // <copyright file="BoVerkResponseParser.cs" company="FCS">
-//     Copyright (C) 2015 - 2023 FCS Fredes Computer Service.
+//     Copyright (C) 2015 - 2023 FCS Frede's Computer Service.
 //     This program is free software: you can redistribute it and/or modify
 //     it under the terms of the GNU Affero General Public License as
 //     published by the Free Software Foundation, either version 3 of the
@@ -70,7 +70,7 @@ public class BoVerkResponseParser
 
         var z = data.IndexOf("</a></td>", StringComparison.OrdinalIgnoreCase);
 
-        return data.Substring(z - 13, 11).Trim().Replace("-", "");
+        return data.Substring(z - 13, 12).Trim().Replace("-", "");
     }
 
 
