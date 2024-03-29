@@ -1,13 +1,14 @@
 ﻿// ***********************************************************************
 // Assembly         : FCS.Lib.BoVerk
-// Author           : 
-// Created          : 2023-10-02
+// Filename         : BoVerkResponseParser.cs
+// Author           : Frede Hundewadt
+// Created          : 2024 01 31 14:08
 // 
 // Last Modified By : root
-// Last Modified On : 2023-10-13 07:33
+// Last Modified On : 2024 03 29 12:37
 // ***********************************************************************
-// <copyright file="BoVerkResponseParser.cs" company="FCS">
-//     Copyright (C) 2015 - 2023 FCS Frede's Computer Service.
+// <copyright company="FCS">
+//     Copyright (C) 2024-2024 FCS Frede's Computer Service.
 //     This program is free software: you can redistribute it and/or modify
 //     it under the terms of the GNU Affero General Public License as
 //     published by the Free Software Foundation, either version 3 of the
