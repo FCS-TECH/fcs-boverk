@@ -2,13 +2,13 @@
 // Assembly         : FCS.Lib.BoVerk
 // Filename         : BoVerkHttpRequest.cs
 // Author           : Frede Hundewadt
-// Created          : 2023 12 31 16:24
+// Created          : 2024 04 01 14:13
 // 
 // Last Modified By : root
-// Last Modified On : 2024 03 29 12:37
+// Last Modified On : 2024 04 11 13:05
 // ***********************************************************************
 // <copyright company="FCS">
-//     Copyright (C) 2023-2024 FCS Frede's Computer Service.
+//     Copyright (C) 2024-2024 FCS Frede's Computer Service.
 //     This program is free software: you can redistribute it and/or modify
 //     it under the terms of the GNU Affero General Public License as
 //     published by the Free Software Foundation, either version 3 of the
@@ -30,6 +30,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using FCS.Lib.Common;
 
+
 namespace FCS.Lib.BoVerk;
 
 public class BoVerkHttpRequest
@@ -38,6 +39,7 @@ public class BoVerkHttpRequest
 
     private const string UserAgent =
         "Mozilla/5.0 (iPad; CPU OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.2 Mobile/15E148 Safari/604.1";
+
 
     public async Task<HttpResponseView> GetResponseAsync(string searchData)
     {
@@ -58,6 +60,7 @@ public class BoVerkHttpRequest
         request.Content = postData;
 
         var response = await client.SendAsync(request).ConfigureAwait(true);
+
         var content = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
 
         return new HttpResponseView

@@ -54,7 +54,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="z:\FCS\fcs-common\FCS.Lib.Common.csproj">
+    <ProjectReference Include="..\fcs-common\FCS.Lib.Common.csproj">
       <Project>{3e5fa1ab-44d2-4cbc-b6d7-80b74ca9b265}</Project>
       <Name>FCS.Lib.Common</Name>
     </ProjectReference>

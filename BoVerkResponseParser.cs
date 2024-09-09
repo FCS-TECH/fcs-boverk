@@ -2,10 +2,10 @@
 // Assembly         : FCS.Lib.BoVerk
 // Filename         : BoVerkResponseParser.cs
 // Author           : Frede Hundewadt
-// Created          : 2024 01 31 14:08
+// Created          : 2024 03 29 12:37
 // 
 // Last Modified By : root
-// Last Modified On : 2024 03 29 12:37
+// Last Modified On : 2024 04 11 13:05
 // ***********************************************************************
 // <copyright company="FCS">
 //     Copyright (C) 2024-2024 FCS Frede's Computer Service.
@@ -27,6 +27,7 @@
 
 using System;
 
+
 namespace FCS.Lib.BoVerk;
 
 public class BoVerkResponseParser
@@ -35,6 +36,7 @@ public class BoVerkResponseParser
     private const string TdHOrgnr = "<td headers=\"h-orgnr\">";
     private const string TdHFirma = "<td headers=\"h-firma\">";
     private const string TdHStatus = "<td headers=\"h-status\">";
+
 
     public string ParseCompanyName(string content)
     {
@@ -109,6 +111,7 @@ public class BoVerkResponseParser
 
         return ParseDateTime(data.Substring(0, pEnd));
     }
+
 
     public DateTime ParseDateTime(string data)
     {
